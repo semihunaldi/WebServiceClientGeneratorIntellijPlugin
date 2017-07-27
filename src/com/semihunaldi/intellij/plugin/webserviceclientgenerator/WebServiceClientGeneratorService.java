@@ -78,7 +78,7 @@ public class WebServiceClientGeneratorService
         }
         catch (Exception e)
         {
-            throw new RuntimeException("Unexpected Error Occured",e);
+            throw new RuntimeException("Unexpected Error Occured, " + e.getMessage(),e);
         }
     }
 

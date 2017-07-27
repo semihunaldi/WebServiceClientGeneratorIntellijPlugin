@@ -1,5 +1,7 @@
 package com.semihunaldi.intellij.plugin.webserviceclientgenerator;
 
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import org.jetbrains.annotations.Nullable;
@@ -16,9 +18,12 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
     protected WebServiceClientGeneratorDialog(Project project)
     {
         super(project);
+        this.project = project;
         init();
         setTitle("Web Service Client Generator");
     }
+
+    private Project project;
 
     private WSForm wsForm = new WSForm();
 
@@ -47,11 +52,13 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
         try
         {
             new WebServiceClientGeneratorService().generateClient(wsGeneratorDTO);
+            Notification notification = new Notification("info","WS Client Generator","Success", NotificationType.INFORMATION);
+            notification.notify(project);
         }
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            Notification notification = new Notification("error","WS Client Generator",e.getMessage(), NotificationType.ERROR);
+            notification.notify(project);
         }
     }
 

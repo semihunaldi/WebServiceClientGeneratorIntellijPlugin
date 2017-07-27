@@ -12,6 +12,8 @@ public class WSForm
     private JTextField wsdlPathField;
     private JTextField optionsField;
     private JPanel panelj;
+    private JTextField versionField;
+    private JTextField pathToGenerateClientField;
 
     public JTextField getGroupIdField()
     {
@@ -61,5 +63,25 @@ public class WSForm
     public void setPanelj(JPanel panelj)
     {
         this.panelj = panelj;
+    }
+
+    public JTextField getVersionField()
+    {
+        return versionField;
+    }
+
+    public void setVersionField(JTextField versionField)
+    {
+        this.versionField = versionField;
+    }
+
+    public JTextField getPathToGenerateClientField()
+    {
+        return pathToGenerateClientField;
+    }
+
+    public void setPathToGenerateClientField(JTextField pathToGenerateClientField)
+    {
+        this.pathToGenerateClientField = pathToGenerateClientField;
     }
 }

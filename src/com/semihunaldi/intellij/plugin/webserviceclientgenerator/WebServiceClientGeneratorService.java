@@ -47,16 +47,21 @@ public class WebServiceClientGeneratorService
             native2ascii.destroy();
             if(native2ascii.exitValue() != 0)
             {
-                printErrorStream(native2ascii.getErrorStream());
-                printErrorStream(native2ascii.getInputStream());
+                String s = getErrorStreamString(native2ascii.getErrorStream());
+                s = s.concat(getErrorStreamString(native2ascii.getInputStream()));
+                throw new RuntimeException(s);
             }
             String command = "wsimport " + newWsdl.getAbsolutePath() + " -d " + jarFile.getParent() + " -clientjar " + jarFile.getAbsolutePath() + " -keep -XadditionalHeaders -B-XautoNameResolution";
+            if(wsGeneratorDTO.getOptions() != null && !wsGeneratorDTO.getOptions().isEmpty())
+            {
+                command = command.concat(wsGeneratorDTO.getOptions());
+            }
             Process process = Runtime.getRuntime().exec(command);
             process.waitFor();
             System.out.println("wsimport exit value : " + process.exitValue());
             if(process.exitValue() != 0)
             {
-                printErrorStream(process.getErrorStream());
+                throw new RuntimeException(getErrorStreamString(process.getErrorStream()));
             }
             else
             {
@@ -66,24 +71,24 @@ public class WebServiceClientGeneratorService
                 System.out.println("mvn-install exit value : " + mvn.exitValue());
                 if(process.exitValue() != 0)
                 {
-                    printErrorStream(mvn.getErrorStream());
+                    throw new RuntimeException(getErrorStreamString(mvn.getErrorStream()));
                 }
-                System.out.println("finished");
+                System.out.println("Finished");
             }
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            throw new RuntimeException("Unexpected Error Occured",e);
         }
     }
 
-    private void printErrorStream(InputStream errorStream)
+    private String getErrorStreamString(InputStream errorStream)
     {
         if (errorStream != null)
         {
             Scanner s = new Scanner(errorStream).useDelimiter("\\A");
-            String result = s.hasNext() ? s.next() : "";
-            System.out.println(result);
+            return s.hasNext() ? s.next() : "";
         }
+        return "";
     }
 }

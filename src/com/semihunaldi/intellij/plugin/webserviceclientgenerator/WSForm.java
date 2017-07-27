@@ -1,6 +1,7 @@
 package com.semihunaldi.intellij.plugin.webserviceclientgenerator;
 
 import javax.swing.*;
+import java.io.File;
 
 /**
  * Created by TTSUNALDI on 7/27/2017.
@@ -14,6 +15,42 @@ public class WSForm
     private JPanel panelj;
     private JTextField versionField;
     private JTextField pathToGenerateClientField;
+    private JButton WSDLPathButton;
+
+    WSForm()
+    {
+        prepareFileChooser();
+    }
+
+    private void prepareFileChooser()
+    {
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setDialogTitle("Choose WSDL");
+        this.getWSDLPathButton().addActionListener(e ->
+        {
+
+            int returnVal = jFileChooser.showOpenDialog(this.getPanelj());
+            if (returnVal == JFileChooser.APPROVE_OPTION)
+            {
+                File file = jFileChooser.getSelectedFile();
+                if(file != null)
+                {
+                    this.getWsdlPathField().setText(file.getAbsolutePath());
+                    File generatePath = new File(file.getParent().concat("/").concat(getFileName(file)).concat("Client.jar"));
+                    this.getPathToGenerateClientField().setText(generatePath.getAbsolutePath());
+                }
+            }
+            else
+            {
+                System.out.println("file chooser closed by user");
+            }
+        });
+    }
+
+    private String getFileName(File file)
+    {
+        return file.getName().substring(0,file.getName().lastIndexOf("."));
+    }
 
     public JTextField getGroupIdField()
     {
@@ -83,5 +120,15 @@ public class WSForm
     public void setPathToGenerateClientField(JTextField pathToGenerateClientField)
     {
         this.pathToGenerateClientField = pathToGenerateClientField;
+    }
+
+    public JButton getWSDLPathButton()
+    {
+        return WSDLPathButton;
+    }
+
+    public void setWSDLPathButton(JButton WSDLPathButton)
+    {
+        this.WSDLPathButton = WSDLPathButton;
     }
 }

@@ -39,12 +39,20 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
         String wsdlPath = wsForm.getWsdlPathField().getText();
         String pathToGenerateClient = wsForm.getPathToGenerateClientField().getText();
         String options = "";
-        if(wsForm.getOptionsField() != null && !wsForm.getOptionsField().getText().isEmpty())
+        if (wsForm.getOptionsField() != null && !wsForm.getOptionsField().getText().isEmpty())
         {
             options = wsForm.getOptionsField().getText();
         }
-        WSGeneratorDTO wsGeneratorDTO  = new WSGeneratorDTO(groupId,artifactId,version,wsdlPath,pathToGenerateClient,options);
-        new WebServiceClientGeneratorService().generateClient(wsGeneratorDTO);
+        WSGeneratorDTO wsGeneratorDTO = new WSGeneratorDTO(groupId, artifactId, version, wsdlPath, pathToGenerateClient, options);
+        try
+        {
+            new WebServiceClientGeneratorService().generateClient(wsGeneratorDTO);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void adjustOkActionButton()
@@ -65,6 +73,7 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
             public void focusGained(FocusEvent e)
             {
             }
+
             @Override
             public void focusLost(FocusEvent e)
             {

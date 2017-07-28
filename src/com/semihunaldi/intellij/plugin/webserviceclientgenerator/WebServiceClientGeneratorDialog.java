@@ -48,6 +48,11 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
         {
             options = wsForm.getOptionsField().getText();
         }
+        generateClient(groupId, artifactId, version, wsdlPath, pathToGenerateClient, options);
+    }
+
+    private void generateClient(String groupId, String artifactId, String version, String wsdlPath, String pathToGenerateClient, String options)
+    {
         WSGeneratorDTO wsGeneratorDTO = new WSGeneratorDTO(groupId, artifactId, version, wsdlPath, pathToGenerateClient, options);
         try
         {

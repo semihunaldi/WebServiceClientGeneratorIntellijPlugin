@@ -36,7 +36,7 @@ public class WSForm
                 if(file != null)
                 {
                     this.getWsdlPathField().setText(file.getAbsolutePath());
-                    File generatePath = new File(file.getParent().concat("/").concat(getFileName(file)).concat("Client.jar"));
+                    File generatePath = new File(file.getParent().concat("/").concat(Util.getFileName(file)).concat("Client.jar"));
                     this.getPathToGenerateClientField().setText(generatePath.getAbsolutePath());
                 }
             }
@@ -47,19 +47,9 @@ public class WSForm
         });
     }
 
-    private String getFileName(File file)
-    {
-        return file.getName().substring(0,file.getName().lastIndexOf("."));
-    }
-
     public JTextField getGroupIdField()
     {
         return groupIdField;
-    }
-
-    public void setGroupIdField(JTextField groupIdField)
-    {
-        this.groupIdField = groupIdField;
     }
 
     public JTextField getArtifactIdField()
@@ -67,19 +57,9 @@ public class WSForm
         return artifactIdField;
     }
 
-    public void setArtifactIdField(JTextField artifactIdField)
-    {
-        this.artifactIdField = artifactIdField;
-    }
-
     public JTextField getWsdlPathField()
     {
         return wsdlPathField;
-    }
-
-    public void setWsdlPathField(JTextField wsdlPathField)
-    {
-        this.wsdlPathField = wsdlPathField;
     }
 
     public JTextField getOptionsField()
@@ -87,19 +67,9 @@ public class WSForm
         return optionsField;
     }
 
-    public void setOptionsField(JTextField optionsField)
-    {
-        this.optionsField = optionsField;
-    }
-
     public JPanel getPanelj()
     {
         return panelj;
-    }
-
-    public void setPanelj(JPanel panelj)
-    {
-        this.panelj = panelj;
     }
 
     public JTextField getVersionField()
@@ -107,28 +77,13 @@ public class WSForm
         return versionField;
     }
 
-    public void setVersionField(JTextField versionField)
-    {
-        this.versionField = versionField;
-    }
-
     public JTextField getPathToGenerateClientField()
     {
         return pathToGenerateClientField;
     }
 
-    public void setPathToGenerateClientField(JTextField pathToGenerateClientField)
-    {
-        this.pathToGenerateClientField = pathToGenerateClientField;
-    }
-
     public JButton getWSDLPathButton()
     {
         return WSDLPathButton;
-    }
-
-    public void setWSDLPathButton(JButton WSDLPathButton)
-    {
-        this.WSDLPathButton = WSDLPathButton;
     }
 }

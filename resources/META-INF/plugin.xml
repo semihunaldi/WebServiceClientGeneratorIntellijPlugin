@@ -30,8 +30,8 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="WebServiceClientGeneratorId" class="com.semihunaldi.intellij.plugin.webserviceclientgenerator.WebServiceClientGenerator" text="WebServiceClientGenerator"
-            description="WebServiceClientGenerator">
+    <action id="WebServiceClientGeneratorId" class="com.semihunaldi.intellij.plugin.webserviceclientgenerator.WebServiceClientGenerator" text="Web Service Client Generator"
+            description="Web Service Client Generator">
       <add-to-group group-id="ToolsMenu" anchor="first"/>
     </action>
   </actions>

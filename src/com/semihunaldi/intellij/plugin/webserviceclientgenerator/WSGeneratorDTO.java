@@ -27,19 +27,9 @@ public class WSGeneratorDTO
         return groupId;
     }
 
-    public void setGroupId(String groupId)
-    {
-        this.groupId = groupId;
-    }
-
     public String getArtifactId()
     {
         return artifactId;
-    }
-
-    public void setArtifactId(String artifactId)
-    {
-        this.artifactId = artifactId;
     }
 
     public String getVersion()
@@ -47,19 +37,9 @@ public class WSGeneratorDTO
         return version;
     }
 
-    public void setVersion(String version)
-    {
-        this.version = version;
-    }
-
     public String getWsdlPath()
     {
         return wsdlPath;
-    }
-
-    public void setWsdlPath(String wsdlPath)
-    {
-        this.wsdlPath = wsdlPath;
     }
 
     public String getPathToGenerateClient()
@@ -67,18 +47,9 @@ public class WSGeneratorDTO
         return pathToGenerateClient;
     }
 
-    public void setPathToGenerateClient(String pathToGenerateClient)
-    {
-        this.pathToGenerateClient = pathToGenerateClient;
-    }
-
     public String getOptions()
     {
         return options;
     }
 
-    public void setOptions(String options)
-    {
-        this.options = options;
-    }
 }

@@ -1,5 +1,7 @@
 package com.semihunaldi.intellij.plugin.webserviceclientgenerator;
 
+import java.io.File;
+
 /**
  * Created by TTSUNALDI on 7/27/2017.
  */
@@ -9,8 +11,6 @@ public class Util
     {
         WINDOWS, LINUX, MAC, SOLARIS
     }
-
-    ;// Operating systems.
 
     private static OS os = null;
 
@@ -38,5 +38,10 @@ public class Util
             }
         }
         return os;
+    }
+
+    public static String getFileName(File file)
+    {
+        return file.getName().substring(0,file.getName().lastIndexOf("."));
     }
 }

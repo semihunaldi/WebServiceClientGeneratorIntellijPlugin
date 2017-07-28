@@ -38,6 +38,7 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
     @Override
     protected void doOKAction()
     {
+        myOKAction.setEnabled(false);
         String groupId = wsForm.getGroupIdField().getText();
         String artifactId = wsForm.getArtifactIdField().getText();
         String version = wsForm.getVersionField().getText();
@@ -59,11 +60,13 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
             new WebServiceClientGeneratorService().generateClient(wsGeneratorDTO);
             Notification notification = new Notification("info","WS Client Generator","Success", NotificationType.INFORMATION);
             notification.notify(project);
+            close(0);
         }
         catch (Exception e)
         {
             Notification notification = new Notification("error","WS Client Generator",e.getMessage(), NotificationType.ERROR);
             notification.notify(project);
+            myOKAction.setEnabled(true);
         }
     }
 

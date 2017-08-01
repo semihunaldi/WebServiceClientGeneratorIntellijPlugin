@@ -98,24 +98,29 @@ public class WebServiceClientGeneratorService
         }
         else
         {
-            File executable = new File(mavenHome.concat("bin/mvn.bat"));
+            File executable = new File(mavenHome.concat("/bin/mvn"));
+            File batExecutable = new File(mavenHome.concat("/bin/mvn.bat"));
+            File cmdExecutable = new File(mavenHome.concat("/bin/mvn.cmd"));
             switch (Util.getOS())
             {
                 case MAC:
-                    mvnExecutable = new File(mavenHome.concat("/bin/mvn"));
+                    mvnExecutable = executable;
                     break;
                 case LINUX:
-                    mvnExecutable = new File(mavenHome.concat("/bin/mvn"));
+                    mvnExecutable = executable;
                     break;
                 case WINDOWS:
                     if (executable.exists())
                     {
                         mvnExecutable = executable;
                     }
+                    else if(batExecutable.exists())
+                    {
+                        mvnExecutable = batExecutable;
+                    }
                     else
                     {
-                        executable = new File(mavenHome.concat("/bin/mvn.cmd"));
-                        mvnExecutable = executable;
+                        mvnExecutable = cmdExecutable;
                     }
                     break;
                 default:
@@ -123,10 +128,13 @@ public class WebServiceClientGeneratorService
                     {
                         mvnExecutable = executable;
                     }
+                    else if(batExecutable.exists())
+                    {
+                        mvnExecutable = batExecutable;
+                    }
                     else
                     {
-                        executable = new File(mavenHome.concat("/bin/mvn.cmd"));
-                        mvnExecutable = executable;
+                        mvnExecutable = cmdExecutable;
                     }
                     break;
             }

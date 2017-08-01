@@ -60,13 +60,18 @@ public class WebServiceClientGeneratorDialog extends DialogWrapper
             new WebServiceClientGeneratorService().generateClient(wsGeneratorDTO);
             Notification notification = new Notification("info","WS Client Generator","Success", NotificationType.INFORMATION);
             notification.notify(project);
-            close(0);
+            ErrorDialogUI errorDialogUI = new ErrorDialogUI(project,"Success");
+            errorDialogUI.createCenterPanel();
+            errorDialogUI.show();
         }
         catch (Exception e)
         {
             Notification notification = new Notification("error","WS Client Generator",e.getMessage(), NotificationType.ERROR);
             notification.notify(project);
             myOKAction.setEnabled(true);
+            ErrorDialogUI errorDialogUI = new ErrorDialogUI(project,e.getMessage());
+            errorDialogUI.createCenterPanel();
+            errorDialogUI.show();
         }
     }
 

@@ -102,10 +102,10 @@ public class WebServiceClientGeneratorService
             switch (Util.getOS())
             {
                 case MAC:
-                    mvnExecutable = new File(mavenHome.concat("bin/mvn"));
+                    mvnExecutable = new File(mavenHome.concat("/bin/mvn"));
                     break;
                 case LINUX:
-                    mvnExecutable = new File(mavenHome.concat("bin/mvn"));
+                    mvnExecutable = new File(mavenHome.concat("/bin/mvn"));
                     break;
                 case WINDOWS:
                     if (executable.exists())
@@ -114,7 +114,7 @@ public class WebServiceClientGeneratorService
                     }
                     else
                     {
-                        executable = new File(mavenHome.concat("bin/mvn.cmd"));
+                        executable = new File(mavenHome.concat("/bin/mvn.cmd"));
                         mvnExecutable = executable;
                     }
                     break;
@@ -125,7 +125,7 @@ public class WebServiceClientGeneratorService
                     }
                     else
                     {
-                        executable = new File(mavenHome.concat("bin/mvn.cmd"));
+                        executable = new File(mavenHome.concat("/bin/mvn.cmd"));
                         mvnExecutable = executable;
                     }
                     break;
